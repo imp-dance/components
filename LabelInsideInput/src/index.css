@@ -1,0 +1,45 @@
+.hu-comp-label-inside-input {
+  display: block;
+  position: relative;
+  margin: 0 0 5px;
+}
+.hu-comp-label-inside-input span {
+  transition: all 0.1s ease-out;
+  position: absolute;
+  top: 1em;
+  left: 0.7em;
+  font-size: 1em;
+  opacity: 0.8;
+  user-select: none;
+  pointer-events: none;
+  right: 0px;
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.hu-comp-label-inside-input input {
+  border: 2px solid #eee;
+  border-radius: 3px;
+  padding: 1.1em 0.5em 0.5em;
+  font-size: 1em;
+  width: 100%;
+}
+.hu-comp-label-inside-input input::placeholder {
+  font-size: 0px;
+}
+.hu-comp-label-inside-input input:focus {
+  border-color: #575796;
+  outline: none;
+}
+.hu-comp-label-inside-input input:focus ~ span,
+.hu-comp-label-inside-input input:not(:placeholder-shown) ~ span {
+  top: 7px;
+  left: 8px;
+  font-size: 0.6em;
+}
+.hu-comp-label-inside-input input:-webkit-autofill,
+.hu-comp-label-inside-input input:-webkit-autofill:hover,
+.hu-comp-label-inside-input input:-webkit-autofill:focus,
+.hu-comp-label-inside-input input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 10em white inset !important;
+}
