@@ -46,7 +46,7 @@
     "webpack-dev-server": "^3.1.14"
   },
   "homepage": "https://github.com/imp-dance/components#readme",
-  "license": "ISC",
+  "license": "MIT",
   "main": "build/index.js",
   "name": "template",
   "peerDependencies": {
