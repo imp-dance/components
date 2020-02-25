@@ -46,7 +46,7 @@
     "style-loader": "^1.1.3"
   },
   "homepage": "https://github.com/imp-dance/components#readme",
-  "license": "ISC",
+  "license": "MIT",
   "main": "build/index.js",
   "name": "label-inside-input-react",
   "peerDependencies": {
