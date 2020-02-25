@@ -133,7 +133,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Your Name - [@impedansen](https://twitter.com/impedansen) - haakon@underbakke.net
+Håkon Svennes Underbakke - [@impedansen](https://twitter.com/impedansen) - haakon@underbakke.net
 
 Project Link: [https://github.com/imp-dance/components](https://github.com/imp-dance/components)
 
