@@ -10,15 +10,16 @@ const searchNode = (item, q) => {
   } else if (typeof item.content === 'string') {
     searchableText = item.content
   }
+  searchableText = searchableText.replace('+', '')
   const arrayOfWordsToSearch = searchableText.split(' ')
   const arrayOfQWords = q.trim().split(' ')
   if (!searchableText) {
-    throw 'Something went wrong with SearchableList...'
+    throw new Error('Something went wrong with SearchableList...')
   } else {
     arrayOfWordsToSearch.forEach(word => {
       arrayOfQWords.forEach(qWord => {
         if (qWord !== '') {
-          if (word.toUpperCase().search(qWord.toUpperCase()) >= 0) {
+          if (word.toUpperCase().search(`${qWord.toUpperCase()}`) >= 0) {
             matches++
           }
         } else {
@@ -30,7 +31,7 @@ const searchNode = (item, q) => {
       item.tags.forEach(word => {
         arrayOfQWords.forEach(qWord => {
           if (qWord !== '') {
-            if (word.toUpperCase().search(qWord.toUpperCase()) >= 0) {
+            if (word.toUpperCase().search(`${qWord.toUpperCase()}`) >= 0) {
               matches++
             }
           } else {
@@ -43,38 +44,53 @@ const searchNode = (item, q) => {
   return matches >= arrayOfQWords.length
 }
 const getRecursiveChildText = reactNode => {
-  if (reactNode.props === undefined && reactNode.length > 1) {
+  if (Array.isArray(reactNode)) {
+    // Multiple children
     let joinedNodes = []
     reactNode.forEach(node => {
       if (typeof node === 'object') joinedNodes.push(getRecursiveChildText(node))
+      else if (typeof node === 'string') joinedNodes.push(node)
     })
     return joinedNodes.join(' ')
-  } else if (typeof reactNode.props.children === 'string') {
-    return reactNode.props.children
-  } else if (typeof reactNode.props.children === 'object') {
+  }
+  if (reactNode.props.children === undefined) {
+    // Did not find any text nodes
+    if (typeof reactNode === 'string') return reactNode
+    else return ' '
+  }
+  if (typeof reactNode.props.children === 'object') {
+    // Found direct child
     return getRecursiveChildText(reactNode.props.children)
-  } else if (reactNode.props.children === undefined) {
-    return ' '
+  }
+  if (typeof reactNode.props.children === 'string') {
+    // Found searchable string
+    return reactNode.props.children
   }
 }
 const SearchableList = props => {
-  const { list, className } = props
+  const { list, className, tabIndex } = props
   const [q, setQ] = useState('')
+  const onChange = e => {
+    let newValue = e.target.value.replace('+', ' ')
+    newValue = newValue.replace('\\', ' ')
+    setQ(newValue)
+  }
   return (
     <div {...props} className={`${className || ''} hu-comp-searchable-list`}>
       <Input
         type="text"
         placeholder="Search"
         value={q}
-        onChange={e => {
-          setQ(e.target.value)
-        }}
+        onChange={onChange}
+        tabIndex={tabIndex || '1'}
       />
       <ul>
         {list.map(item => (
           <React.Fragment key={item.key}>
             {q.trim() === '' || searchNode(item, q) ? (
-              <li data-tags={item.tags}>{item.content}</li>
+              <li tabIndex={tabIndex || '1'} data-tags={item.tags}>
+                {item.content}
+              </li>
             ) : (
               <></>
             )}
@@ -91,9 +107,11 @@ SearchableList.propTypes = {
       tags: PropTypes.arrayOf(PropTypes.string),
       key: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     })
-  )
+  ),
+  tabIndex: PropTypes.string
 }
 SearchableList.defaultProps = {
-  list: [{ content: '', tags: [], key: 'uniqey4hucomplist-default' }]
+  list: [{ content: '', tags: [], key: 'uniqey4hucomplist-default' }],
+  tabIndex: '1'
 }
 export default SearchableList
