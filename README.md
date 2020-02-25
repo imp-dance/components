@@ -63,7 +63,7 @@
 
 ## About The Project
 
-[![hu-components Screen Shot][product-screenshot]](https://example.com)
+[![hu-components Screen Shot][product-screenshot]](https://haakon.underbakke.net)
 
 I find most component frameworks to overly complex and large for most of my needs, so I decided to start publishing encapsulated, small and reusable components that have a clean and easily stylable design.
 
