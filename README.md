@@ -33,7 +33,7 @@
   <p align="center">
     A collection of small reusable and lightweight React components
     <br />
-    <a href="https://github.com/imp-dance/components"><strong>Explore the docs »</strong></a>
+    <a href="https://haakon.underbakke.net/components"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://haakon.underbakke.net/components">View Demo</a>
@@ -50,7 +50,7 @@
 
 - [About the Project](#about-the-project)
   - [Built With](#built-with)
-- [Getting Started With Contributing](#getting-started)
+- [Getting Started With Contributing](#getting-started-with-contributing)
   - [Prerequisites](#prerequisites)
   - [Cloning the repositories](#cloning-the-repositories)
   - [Starting the dev-environment](#starting-the-dev-environment)
