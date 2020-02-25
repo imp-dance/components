@@ -50,7 +50,7 @@
 
 - [About the Project](#about-the-project)
   - [Built With](#built-with)
-- [Getting Started With Contributing](#getting-started)
+- [Getting Started With Contributing](#getting-started-with-contributing)
   - [Prerequisites](#prerequisites)
   - [Cloning the repositories](#cloning-the-repositories)
   - [Starting the dev-environment](#starting-the-dev-environment)
