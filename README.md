@@ -33,7 +33,7 @@
   <p align="center">
     A collection of small reusable and lightweight React components
     <br />
-    <a href="https://github.com/imp-dance/components"><strong>Explore the docs »</strong></a>
+    <a href="https://haakon.underbakke.net/components"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://haakon.underbakke.net/components">View Demo</a>
