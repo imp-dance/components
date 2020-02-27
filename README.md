@@ -54,6 +54,7 @@
   - [Prerequisites](#prerequisites)
   - [Cloning the repositories](#cloning-the-repositories)
   - [Starting the dev-environment](#starting-the-dev-environment)
+  - [Testing existing components](#testing-existing-components)
 - [Roadmap](#roadmap)
 - [License](#license)
 - [Contact](#contact)
@@ -113,7 +114,7 @@ After the packages have finished installing, you can start the test environment
 npm run start
 ```
 
-### Making changes
+### Testing existing components
 
 From [components-serve/components](https://github.com/imp-dance/components-serve/tree/master/components/), you can load in the examples from [src/components/reusable](https://github.com/imp-dance/components-serve/tree/master/components/src/components/reusable) instead of directly from NPM, then you can edit them directly to see the live changes.
 
