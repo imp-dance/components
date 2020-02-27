@@ -1,10 +1,15 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import './index.css'
 
 export const ImageGallery = props => {
   const ref = useRef(null)
+  const [dragState, setDragState] = useState({
+    isDown: false,
+    startX: null,
+    scrollLeft: null
+  })
   const images = props.images
-  let imageArray = []
+  const imageArray = []
   const onClick = url => {
     if (props.noOpen) {
     } else {
@@ -24,8 +29,8 @@ export const ImageGallery = props => {
     )
   }
   const scrollRight = () => {
-    let target = ref.current
-    let section = target.scrollWidth / imageArray.length
+    const target = ref.current
+    const section = target.scrollWidth / imageArray.length
     if (props.hardScroll) {
       target.scrollLeft = target.scrollLeft - section
     } else {
@@ -37,8 +42,8 @@ export const ImageGallery = props => {
     }
   }
   const scrollLeft = () => {
-    let target = ref.current
-    let section = target.scrollWidth / imageArray.length
+    const target = ref.current
+    const section = target.scrollWidth / imageArray.length
     if (props.hardScroll) {
       target.scrollLeft = target.scrollLeft - section
     } else {
@@ -49,9 +54,38 @@ export const ImageGallery = props => {
       })
     }
   }
+  const mouseDown = e => {
+    const target = ref.current
+    setDragState({
+      ...dragState,
+      isDown: true,
+      startX: e.pageX - target.offsetLeft,
+      scrollLeft: target.scrollLeft
+    })
+  }
+  const mouseLeaveUp = () => {
+    setDragState({ ...dragState, isDown: false })
+  }
+  const mouseMove = e => {
+    if (!dragState.isDown) return
+    if (props.draggable !== undefined && props.draggable === false) return
+    e.preventDefault()
+    const target = ref.current
+    const x = e.pageX - target.offsetLeft
+    const walk = x - dragState.startX //scroll-fast
+    target.scrollLeft = dragState.scrollLeft - walk
+  }
+
   return (
     <div {...props} className={`${props.className} hu-styled-imageGalleryContainer`}>
-      <div ref={ref} className="hu-styled-imageGallery">
+      <div
+        ref={ref}
+        onMouseDown={mouseDown}
+        onMouseLeave={mouseLeaveUp}
+        onMouseUp={mouseLeaveUp}
+        onMouseMove={mouseMove}
+        className="hu-styled-imageGallery"
+      >
         <button className="hu-comp-img-gal-left" onClick={scrollLeft} type="round" fontIcon=" ">
           &#8249;
         </button>
