@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
-import '../styles/AspectRatioForcer.css'
+import './index.css'
 const AspectRatioForcer = props => {
   const { img, ratio, className, output } = props
   const [containerPosition, setContainerPosition] = useState({
