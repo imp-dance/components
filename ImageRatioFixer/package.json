@@ -61,5 +61,5 @@
     "dev": "webpack-dev-server --env testServer --mode development --open",
     "start": "webpack --env publish --mode production --watch"
   },
-  "version": "1.0.1"
+  "version": "1.0.3"
 }
